@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 export const isFalsy = (value) => (value === 0 ? true : Boolean(value));
 
 export const cleanObject = (obj) => {
@@ -9,4 +11,10 @@ export const cleanObject = (obj) => {
         }
     });
     return res;
+};
+
+export const useMount = (callback) => {
+    useEffect(() => {
+        callback();
+    }, []);
 };
