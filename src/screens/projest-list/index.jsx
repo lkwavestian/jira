@@ -8,13 +8,13 @@ console.log('apiUrl :>> ', apiUrl);
 export const ProjectListScreen = () => {
     const [list, setList] = useState([]);
     const [users, setUsers] = useState([]);
-    useMount(
+    useMount(() => {
         fetch(`${apiUrl}/users`).then(async (response) => {
             if (response.ok) {
                 setUsers(await response.json());
             }
-        })
-    );
+        });
+    });
     return (
         <div>
             <SearchPanel setList={setList} users={users} />

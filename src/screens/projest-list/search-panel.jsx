@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { cleanObject } from 'utils';
+import { cleanObject, useDebounce } from 'utils';
 import * as qs from 'qs';
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -9,13 +9,15 @@ export const SearchPanel = ({ users, setList }) => {
         name: '',
         personId: '',
     });
+    const debounceParam = useDebounce(param, 500);
+
     useEffect(() => {
-        fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`).then(async (response) => {
+        fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(debounceParam))}`).then(async (response) => {
             if (response.ok) {
                 setList(await response.json());
             }
         });
-    }, [param]);
+    }, [debounceParam]);
     return (
         <form>
             <div>
