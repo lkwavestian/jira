@@ -1,6 +1,19 @@
 import { useState } from 'react';
+import { User } from './search-panel';
 
-export const List = ({ list, users }) => {
+interface Project {
+    id: string;
+    name: string;
+    personId: string;
+    pin: boolean;
+    organization: string;
+}
+
+interface listProps {
+    list: Project[];
+    users: User[];
+}
+export const List = ({ list, users }: listProps) => {
     console.log('list :>> ', list);
     console.log('users :>> ', users);
     return (

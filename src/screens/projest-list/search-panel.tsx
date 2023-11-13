@@ -2,8 +2,20 @@ import { useEffect, useState } from 'react';
 import { cleanObject, useDebounce } from 'utils';
 import * as qs from 'qs';
 
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    title: string;
+    organization: string;
+}
+
+interface SearchPanelProps {
+    users: User[];
+    setList: any;
+}
 const apiUrl = process.env.REACT_APP_API_URL;
-export const SearchPanel = ({ users, setList }) => {
+export const SearchPanel = ({ users, setList }: SearchPanelProps) => {
     console.log('users :>> ', users);
     const [param, setParam] = useState({
         name: '',
